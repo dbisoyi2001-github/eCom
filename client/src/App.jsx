@@ -31,8 +31,8 @@ const App = () => {
             </CheckAuth>
           }
         >
-          <Route path="login" element={<AuthLogin />} />
           <Route path="register" element={<AuthRegister />} />
+          <Route path="login" element={<AuthLogin />} />
         </Route>
         <Route
           path="/admin"
