@@ -22,7 +22,7 @@ const AuthLogin = () => {
         <p className="mt-2">
           Don't have an account?
           <Link
-            className="font-medium text-primary hover:underline ml-2"
+            className="font-medium text-primary underline ml-2"
             to={"/auth/register"}
           >
             Sign up
