@@ -40,9 +40,56 @@ const registerUser = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
-  const { email, password } = req.body;
+//login
+const loginUser = async (req, res) => {
   try {
+    const { email, password } = req.body;
+
+    // Validate input
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and password are required",
+      });
+    }
+
+    //if user doesnt exist
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "User doesn't exist",
+      });
+    }
+    //if incorrect password
+    const checkPassword = await bcrypt.compare(password, existingUser.password);
+    if (!checkPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "Incorrect Password!",
+      });
+    }
+
+    //if everything correct
+    const token = jwt.sign(
+      {
+        id: existingUser.id,
+        role: existingUser.role,
+        email: existingUser.email,
+      },
+      "SECRET_KEY",
+      { expiresIn: "12h" }
+    );
+
+    res.cookie("token", token, { httpOnly: true, secure: false }).json({
+      success: true,
+      message: "Logged in successfully",
+      user: {
+        id: existingUser.id,
+        email: existingUser.email,
+        role: existingUser.role,
+      },
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -52,4 +99,4 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { registerUser };
+module.exports = { registerUser, loginUser };
