@@ -30,6 +30,7 @@ const CommonForm = ({
             placeholder={getControlItem.placeholder}
             id={getControlItem.name}
             type={getControlItem.type}
+            required={getControlItem.required}
             value={value}
             onChange={(event) =>
               setFormData({
@@ -79,6 +80,7 @@ const CommonForm = ({
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
             id={getControlItem.id}
+            required={getControlItem.required}
             value={value}
             onChange={(event) =>
               setFormData({
@@ -98,6 +100,7 @@ const CommonForm = ({
             placeholder={getControlItem.placeholder}
             id={getControlItem.name}
             type={getControlItem.type}
+            required={getControlItem.required}
             onChange={(event) =>
               setFormData({
                 ...formData,
