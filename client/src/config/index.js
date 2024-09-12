@@ -44,7 +44,6 @@ export const loginFormControls = [
   },
 ];
 
-
 export const addProductFormControls = [
   {
     name: "title",
@@ -73,6 +72,7 @@ export const addProductFormControls = [
       { id: 4, label: "Home Appliances" },
     ],
     required: true,
+    add: true,
   },
   {
     name: "brand",
@@ -85,6 +85,7 @@ export const addProductFormControls = [
       { id: 3, label: "Brand C" },
     ],
     required: true,
+    add: true,
   },
   {
     name: "price",

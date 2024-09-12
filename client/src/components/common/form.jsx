@@ -83,9 +83,11 @@ const CommonForm = ({
                       </SelectItem>
                     ))
                   : ""}
-                <SelectItem value="add_new">
-                  Add New {getControlItem.label}
-                </SelectItem>
+                {getControlItem.add ? (
+                  <SelectItem value="add_new">
+                    Add New {getControlItem.label}
+                  </SelectItem>
+                ) : null}
               </SelectContent>
             </Select>
 
@@ -95,15 +97,13 @@ const CommonForm = ({
                 <DialogHeader>
                   <DialogTitle>
                     Add New{" "}
-                    {currentSelectName === "category"
-                      ? "Category"
-                      : "Brand"} {/* Display based on current select */}
+                    {currentSelectName === "category" ? "Category" : "Brand"}
+                    {/* Display based on current select */}
                   </DialogTitle>
                   <DialogDescription>
                     Enter the name of the new{" "}
-                    {currentSelectName === "category"
-                      ? "Category"
-                      : "Brand"}. {/* Display based on current select */}
+                    {currentSelectName === "category" ? "Category" : "Brand"}
+                    {/* Display based on current select */}
                   </DialogDescription>
                 </DialogHeader>
                 <Input
@@ -121,9 +121,9 @@ const CommonForm = ({
                     };
 
                     // Find the control item to update its options
-                    formControls.find(
-                      (control) => control.name === currentSelectName
-                    ).options.push(newOptionObject);
+                    formControls
+                      .find((control) => control.name === currentSelectName)
+                      .options.push(newOptionObject);
 
                     // Update formData with the new option
                     setFormData({
@@ -135,10 +135,8 @@ const CommonForm = ({
                     setNewOption(""); // Reset new option input
                   }}
                 >
-                  Add{" "}
-                  {currentSelectName === "category"
-                    ? "Category"
-                    : "Brand"} {/* Display based on current select */}
+                  Add {currentSelectName === "category" ? "Category" : "Brand"}{" "}
+                  {/* Display based on current select */}
                 </Button>
               </DialogContent>
             </Dialog>

@@ -12,7 +12,7 @@ import ProductImageUpload from "@/components/admin-view/imageupload";
 
 // Initial form data state
 const initialFormData = {
-  image: "null",
+  image: null,
   title: "",
   description: "",
   category: "",
@@ -28,6 +28,7 @@ const AdminProducts = () => {
   const [errors, setErrors] = useState({}); // Add error state
   const [imageFile, setImageFile] = useState(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+  const [imgLoadingState, setImgLoadingState] = useState(false);
 
   // Validate stock and prices on submit
   const validateForm = () => {
@@ -84,6 +85,7 @@ const AdminProducts = () => {
             setImageFile={setImageFile}
             uploadedImageUrl={uploadedImageUrl}
             setUploadedImageUrl={setUploadedImageUrl}
+            setImgLoadingState={setImgLoadingState}
           />
           <div className="py-4">
             <CommonForm
