@@ -3,10 +3,11 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const authRouter = require("./routes/auth/auth-routes");
-const adminProductsRouter = require("./routes/admin/products-routes")
+const adminProductsRouter = require("./routes/admin/products-routes");
+
 
 mongoose
-  .connect("mongodb+srv://rahul4pr:qwerfdsa12@cluster0.bio8b.mongodb.net/")
+  .connect("mongo server")
   .then(() => console.log("database connected"))
   .catch((error) => console.log("Database connection error:", error));
 
@@ -37,7 +38,7 @@ app.use("/api/admin/products", adminProductsRouter);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send("Something broke!");
 });
 
 app.listen(PORT, () => {
